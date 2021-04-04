@@ -20,3 +20,5 @@ To use the application here are the guidelines and info:
     - Items added here will now be displayed on the Shopping Dashboard
     - To delete an item, slide the item on the dashboard(left or right)
       - Note: Deleting an item will automatically update the number of items(based on the quantity bought) in the Home Supplies
+
+Dedicated for the Wife;
