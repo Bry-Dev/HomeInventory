@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="shoppingItems"
+            type="com.example.homeinventory.model.ShoppingForHome"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:layout_margin="2dp">
+
+            <TextView
+                android:id="@+id/shopping_item_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:gravity="start"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:shoppingItemName="@{shoppingItems}"
+                tools:text="TEST " />
+
+            <TextView
+                android:id="@+id/shopping_item_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:shoppingItemQty="@{shoppingItems}"
+                tools:text="33" />
+
+            <TextView
+                android:id="@+id/shopping_item_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35"
+                android:gravity="end"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:shoppingItemDate="@{shoppingItems}"
+                tools:text="12/29/2021" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

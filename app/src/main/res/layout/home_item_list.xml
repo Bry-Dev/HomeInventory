@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="itemList"
+            type="com.example.homeinventory.model.HomeItem"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/home_item_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@{itemList.itemQuantity &lt;= 0 ? @color/attention : @color/normal}"
+                tools:text="TEST HOME"
+                app:itemName="@{itemList}"
+                />
+
+            <TextView
+                android:id="@+id/home_item_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="end"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@{itemList.itemQuantity &lt;= 0 ? @color/attention : @color/normal}"
+                tools:text="TEST END"
+                app:itemQty="@{itemList}"
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

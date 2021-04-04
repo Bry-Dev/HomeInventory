@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.homeinventory.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_add_category"
+            app:destination="@id/navigation_add_category" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_add_home_item"
+            app:destination="@id/navigation_add_home_item" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_category"
+        android:name="com.example.homeinventory.ui.category.AddCategoryFragment"
+        android:label="@string/add_category"
+        tools:layout="@layout/fragment_add_category">
+        <action
+            android:id="@+id/action_navigation_add_category_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_shopping"
+        android:name="com.example.homeinventory.ui.shopping.ShoppingFragment"
+        android:label="@string/title_shopping"
+        tools:layout="@layout/fragment_shopping" >
+        <action
+            android:id="@+id/action_navigation_shopping_to_navigation_add_shopping"
+            app:destination="@id/navigation_add_shopping" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_shopping"
+        android:name="com.example.homeinventory.ui.shopping.AddShoppingFragment"
+        android:label="@string/add_shopping"
+        tools:layout="@layout/fargment_add_shopping" >
+        <action
+            android:id="@+id/action_navigation_add_shopping_to_navigation_shopping"
+            app:destination="@id/navigation_shopping" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_home_item"
+        android:name="com.example.homeinventory.ui.home.AddHomeItemFragment"
+        android:label="@string/add_home_item"
+        tools:layout="@layout/fragment_add_home_item">
+        <action
+            android:id="@+id/action_navigation_add_home_item_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
+</navigation>
