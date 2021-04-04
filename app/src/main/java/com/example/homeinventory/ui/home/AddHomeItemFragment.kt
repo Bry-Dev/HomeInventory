@@ -66,11 +66,12 @@ class AddHomeItemFragment : Fragment() {
                 alertDialog.show()
             } else {
                 val key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
-                if (homeItemWithId.containsValue(editTextHomeItemName.text.toString().trim())) {
+                val homeItemName = editTextHomeItemName.text.toString().trim()
+                if (homeItemWithId.containsValue(homeItemName)) {
                     editTextHomeItemName.error = "Home Item already exists"
                 }
                 else {
-                    homeViewModel.insertHomeItem(HomeItem(key,editTextHomeItemName.text.toString(),editTextHomeItemQty.text.toString().toInt()))
+                    homeViewModel.insertHomeItem(HomeItem(key,homeItemName,editTextHomeItemQty.text.toString().toInt()))
                     findNavController().navigateUp()
                 }
             }
