@@ -8,7 +8,7 @@ To use the application here are the guidelines and info:
   - Home Supplies
     - First Add a category on the first page menu(upper right)
       - This is to categorize the items (e.g. Vegetables, Fruits, Tools, Hardware, etc...)
-    - After the addition, you can now add items(upper right as well) under the categories
+    - After the category addition, you can now add items(upper right as well) under the categories
       - You will have to indicate the name and quantity
     - This will now be displayed in the Dashboard
       - Click the Category to display all items under it
