@@ -10,7 +10,7 @@ To use the application here are the guidelines and info:
       - This is to categorize the items (e.g. Vegetables, Fruits, Tools, Hardware, etc...)
     - After the category addition, you can now add items(upper right as well) under the categories
       - You will have to indicate the name and quantity
-    - This will now be displayed in the Dashboard
+    - This will now be displayed on the Dashboard
       - Click the Category to display all items under it
   - Shopping Supplies
     - On the upper right corner, you can add new items for buying
