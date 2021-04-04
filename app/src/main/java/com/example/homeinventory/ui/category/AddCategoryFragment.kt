@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.homeinventory.R
 import com.example.homeinventory.model.Category
 import com.example.homeinventory.ui.home.HomeViewModel
@@ -44,6 +45,7 @@ class AddCategoryFragment : Fragment() {
                 }
                 else {
                     categoryViewModel.insertCategoryData(Category(newCategory))
+                    findNavController().navigateUp()
                 }
             }
         }

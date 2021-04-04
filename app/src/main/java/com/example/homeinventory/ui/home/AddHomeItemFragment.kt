@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.homeinventory.R
 import com.example.homeinventory.model.Category
 import com.example.homeinventory.model.HomeItem
@@ -69,13 +70,8 @@ class AddHomeItemFragment : Fragment() {
                     editTextHomeItemName.error = "Home Item already exists"
                 }
                 else {
-                    homeViewModel.insertHomeItem(
-                        HomeItem(
-                            key,
-                            editTextHomeItemName.text.toString(),
-                            editTextHomeItemQty.text.toString().toInt()
-                        )
-                    )
+                    homeViewModel.insertHomeItem(HomeItem(key,editTextHomeItemName.text.toString(),editTextHomeItemQty.text.toString().toInt()))
+                    findNavController().navigateUp()
                 }
             }
         }
