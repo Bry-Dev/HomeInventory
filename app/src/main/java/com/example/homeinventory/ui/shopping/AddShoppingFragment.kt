@@ -62,7 +62,7 @@ class AddShoppingFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 alertDialog.show()
             } else {
                 val key = homeItemWithId.filterValues { it == dropDownItemName.selectedItem }.keys
-                shoppingViewModel.insertShoppingItem(ShoppingItem(key.first(), editTextItemQty.text.toString().toInt(), LocalDate.parse(editTextBuyDate.text.toString())))
+                shoppingViewModel.insertShoppingItem(ShoppingItem(key.first(), editTextItemQty.text.toString().toInt(), LocalDate.parse(editTextBuyDate.text.toString().trim())))
                 findNavController().navigateUp()
             }
         }
@@ -85,6 +85,7 @@ class AddShoppingFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         val monthFormat = month + 1
         var date = "$year-$monthFormat-$dayOfMonth"
         if (monthFormat < 10) date = "$year-0$monthFormat-$dayOfMonth"
+        if (dayOfMonth < 10) date = "$year-0$monthFormat-0$dayOfMonth"
         editTextBuyDate.setText(date)
 
     }

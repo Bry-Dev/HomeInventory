@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homeinventory.R
+import com.example.homeinventory.helper.SwipeHelper
 import com.example.homeinventory.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,28 +37,20 @@ class ShoppingFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-        ItemTouchHelper(object :
-            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
+        val swipeToDeleteCallback = SwipeHelper { position ->
+            val shoppingForHome = adapter.getShoppingAt(position)
+            shoppingForHome?.let {
+                val newTotal = it.shoppingItem.itemBuyQuantity + it.homeItem.itemQuantity
+                homeViewModel.updateQuantity(newTotal, it.homeItem.itemId)
+                shoppingViewModel.deleteShoppingItem(it.shoppingItem)
+                Toast.makeText(
+                    requireContext(),
+                    "${it.homeItem.itemName} bought!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                val shoppingForHome = adapter.getShoppingAt(position)
-                shoppingForHome?.let {
-                    shoppingViewModel.deleteShoppingItem(it.shoppingItem)
-                    val newTotal = it.shoppingItem.itemBuyQuantity + it.homeItem.itemQuantity
-                    homeViewModel.updateQuantity(newTotal, it.homeItem.itemId)
-                    Toast.makeText(requireContext(), "${it.homeItem.itemName} bought!", Toast.LENGTH_SHORT).show()
-                }
-                adapter.notifyItemRemoved(position)
-            }
-        }).attachToRecyclerView(recyclerShopping)
+        }
+        ItemTouchHelper(swipeToDeleteCallback).attachToRecyclerView(recyclerShopping)
         return root
     }
 
