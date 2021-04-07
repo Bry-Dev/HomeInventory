@@ -67,7 +67,7 @@ class AddHomeItemFragment : Fragment() {
             } else {
                 val key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
                 val homeItemName = editTextHomeItemName.text.toString().trim()
-                val homeItemQty = editTextHomeItemQty.text.toString()
+                val homeItemQty = editTextHomeItemQty.text.toString().trim()
                 when {
                     homeItemWithId.containsValue(homeItemName) -> {
                         editTextHomeItemName.error = "Home Item already exists"
