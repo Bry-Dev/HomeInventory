@@ -13,4 +13,7 @@
     <string name="add_home_item">Add Home Item</string>
     <string name="add_home_button">Add Item</string>
     <string name="item_name">Item Name</string>
+    <string name="delete_button">Delete Item</string>
+    <string name="edit_button">Edit Home Item</string>
+    <string name="enable_spin">Enable Spinner</string>
 </resources>

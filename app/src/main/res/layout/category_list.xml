@@ -11,6 +11,9 @@
         <variable
             name="homeClickListener"
             type="com.example.homeinventory.ui.home.CategoryClickListener" />
+        <variable
+            name="listener"
+            type="com.example.homeinventory.ui.home.OnClickItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -49,9 +52,8 @@
                 tools:listitem="@layout/home_item_list"
                 android:layout_marginEnd="10dp"
                 app:homeItems="@{homeItems}"
+                app:listener="@{listener}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
 </layout>

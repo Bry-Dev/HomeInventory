@@ -11,11 +11,36 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideStartAddLocation"
-        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintWidth_percent=".75" />
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideStartAddLocation"
+        app:layout_constraintVertical_bias="0.05"
         app:layout_constraintWidth_percent=".75"
-        app:layout_constraintHeight_percent=".07" />
+        tools:text="TESTING 101" />
+
+    <ImageButton
+        android:id="@+id/btnEnableSpin"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/enable_spin"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="@id/categoryName"
+        app:layout_constraintStart_toEndOf="@id/categoryName"
+        app:layout_constraintTop_toTopOf="@id/categoryName" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputHomeName"
@@ -24,9 +49,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dropDownCategoryName"
+        app:layout_constraintTop_toBottomOf="@id/guideTextLocation"
         app:layout_constraintVertical_bias=".05"
-        app:layout_constraintWidth_percent=".75" >
+        app:layout_constraintWidth_percent=".75">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextHomeItemName"
@@ -45,14 +70,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputHomeName"
         app:layout_constraintVertical_bias=".05"
-        app:layout_constraintWidth_percent=".75" >
+        app:layout_constraintWidth_percent=".75">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextHomeItemQty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/add_item_quantity"
-            android:inputType="number"/>
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -60,11 +85,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_home_button"
-        app:layout_constraintTop_toBottomOf="@id/textInputHomeQuantity"
         app:layout_constraintBottom_toTopOf="@id/guideEndAddLocation"
-        app:layout_constraintVertical_bias=".15"
+        app:layout_constraintEnd_toStartOf="@id/guideButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputHomeQuantity"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintVertical_bias=".15" />
+
+    <Button
+        android:id="@+id/btnDeleteHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_button"
+        app:layout_constraintBottom_toTopOf="@id/guideEndAddLocation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/guideButton"
+        app:layout_constraintTop_toBottomOf="@id/textInputHomeQuantity"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintVertical_bias=".15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideEndAddLocation"
@@ -79,5 +117,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTextLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".32" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

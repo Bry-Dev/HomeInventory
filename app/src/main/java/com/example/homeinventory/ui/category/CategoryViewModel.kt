@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.homeinventory.model.Category
 import com.example.homeinventory.repository.CategoryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,6 +23,10 @@ constructor(private val categoryRepository: CategoryRepository) : ViewModel() {
 
     fun insertCategoryData(category: Category) =
         viewModelScope.launch { categoryRepository.insertCategoryData(category) }
+
+    fun selectCategory(id : Int) : Single<String> {
+        return categoryRepository.selectCategory(id)
+    }
 
     fun deleteCategory(category: Category) =
         viewModelScope.launch { categoryRepository.deleteCategory(category) }

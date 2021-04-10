@@ -1,6 +1,8 @@
 package com.example.homeinventory.model
 
+import android.os.Parcelable
 import androidx.room.*
+import kotlinx.parcelize.Parcelize
 
 
 @Entity(
@@ -11,6 +13,7 @@ import androidx.room.*
         onDelete = ForeignKey.CASCADE
     )]
 )
+@Parcelize
 data class HomeItem(
     @ColumnInfo(name = "cate_id")
     var categoryId: Int,
@@ -21,6 +24,6 @@ data class HomeItem(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "item_id")
     var itemId: Int = 0
-) {
+) : Parcelable{
 
 }

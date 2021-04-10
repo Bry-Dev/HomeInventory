@@ -10,7 +10,7 @@ import com.example.homeinventory.R
 import com.example.homeinventory.databinding.CategoryListBinding
 import com.example.homeinventory.model.CategoryWithItems
 
-class CategoryRecyclerViewAdapter(private val clickListener: CategoryClickListener) :
+class CategoryRecyclerViewAdapter(private val listener : OnClickItem) :
     ListAdapter<CategoryWithItems, CategoryRecyclerViewAdapter.CategoryRecyclerViewHolder>(CategoryDiffCallback()) {
     private val viewPool = RecyclerView.RecycledViewPool()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryRecyclerViewHolder {
@@ -19,15 +19,15 @@ class CategoryRecyclerViewAdapter(private val clickListener: CategoryClickListen
 
     override fun onBindViewHolder(holder: CategoryRecyclerViewHolder, position: Int) {
         val currentItem = getItem(position)
-        val clickListener = clickListener
-        holder.bind(currentItem, clickListener, viewPool)
+        holder.bind(currentItem, viewPool, listener)
     }
 
     class CategoryRecyclerViewHolder(private val binding: CategoryListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentItem: CategoryWithItems, clickListener: CategoryClickListener, viewPool : RecyclerView.RecycledViewPool) {
+        fun bind(currentItem: CategoryWithItems, viewPool : RecyclerView.RecycledViewPool, onClickItem: OnClickItem) {
             binding.homeItems = currentItem
             binding.recyclerHomeItem.setRecycledViewPool(viewPool)
-            binding.homeClickListener = clickListener
+            binding.listener = onClickItem
+            binding.homeClickListener = CategoryClickListener()
             binding.executePendingBindings()
         }
 
