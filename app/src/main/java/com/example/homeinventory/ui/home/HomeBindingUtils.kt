@@ -13,12 +13,12 @@ fun TextView.setCategoryName(homeItem : CategoryWithItems?) {
     }
 }
 
-@BindingAdapter("homeItems")
-fun RecyclerView.setHomeItems(homeItem: CategoryWithItems?) {
+@BindingAdapter("homeItems", "listener")
+fun RecyclerView.setHomeItems(homeItem: CategoryWithItems?, listener : OnClickItem?) {
     if (!homeItem?.homeItems.isNullOrEmpty()) {
-        val homeAdapter = HomeRecyclerViewAdapter()
+        val homeAdapter = listener?.let { HomeRecyclerViewAdapter(it) }
         adapter = homeAdapter
-        homeAdapter.submitList(homeItem?.homeItems)
+        homeAdapter?.submitList(homeItem?.homeItems)
     }
 }
 

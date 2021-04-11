@@ -2,6 +2,7 @@ package com.example.homeinventory.dao
 
 import androidx.room.*
 import com.example.homeinventory.model.Category
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -13,8 +14,8 @@ interface CategoryDao {
     @Query("select * from category_list")
     fun selectAllCategory(): Flow<List<Category>>
 
-    @Query("select * from category_list where name=:name")
-    suspend fun selectCategory(name: String): Category
+    @Query("select name from category_list where category_id=:id")
+    fun selectCategory(id: Int): Single<String>
 
     @Delete
     suspend fun deleteCategory(category: Category)
