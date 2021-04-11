@@ -12,8 +12,10 @@
     <string name="add_item_desc">Add New Home Item</string>
     <string name="add_home_item">Add Home Item</string>
     <string name="add_home_button">Add Item</string>
+    <string name="lazy_button">OK</string>
     <string name="item_name">Item Name</string>
     <string name="delete_button">Delete Item</string>
     <string name="edit_button">Edit Home Item</string>
     <string name="enable_spin">Enable Spinner</string>
+    <string name="update_button">Update Item</string>
 </resources>

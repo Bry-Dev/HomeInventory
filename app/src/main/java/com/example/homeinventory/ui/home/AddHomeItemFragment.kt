@@ -1,7 +1,6 @@
 package com.example.homeinventory.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +17,6 @@ import com.example.homeinventory.ui.category.CategoryViewModel
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.annotations.NonNull
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
@@ -34,6 +28,8 @@ class AddHomeItemFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var category: List<Category>
     private val args: AddHomeItemFragmentArgs by navArgs()
+    private lateinit var editTextHomeItemQty : TextInputEditText
+    private lateinit var editTextHomeItemName : TextInputEditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,24 +38,20 @@ class AddHomeItemFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
         val root = inflater.inflate(R.layout.fragment_add_home_item, container, false)
-        val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Notice!")
-        alertDialog.setPositiveButton("Ok", null)
         val btnAddHomeItem = root.findViewById<Button>(R.id.btnAddHomeItem)
         val btnDeleteHome = root.findViewById<Button>(R.id.btnDeleteHome)
         val btnEnableSpin = root.findViewById<ImageButton>(R.id.btnEnableSpin)
+        val btnUpdateHomeItem = root.findViewById<Button>(R.id.btnUpdateHomeItem)
         val dropDownCategoryName = root.findViewById<Spinner>(R.id.dropDownCategoryName)
-        val editTextHomeItemQty = root.findViewById<TextInputEditText>(R.id.editTextHomeItemQty)
-        val editTextHomeItemName = root.findViewById<TextInputEditText>(R.id.editTextHomeItemName)
+        editTextHomeItemQty = root.findViewById(R.id.editTextHomeItemQty)
+        editTextHomeItemName = root.findViewById(R.id.editTextHomeItemName)
         val categoryName = root.findViewById<TextView>(R.id.categoryName)
         var isForEdit = false
-        var error = false
-        val editHomeItem = args.homeItem
-        var itemId = 0
-        var editName = ""
-        var editQty = 0
-        var categoryId = 0
-
+        val editHomeItem = args.homeItem; var editName = ""
+        var itemId = 0; var editQty = 0; var categoryId = 0
+        val alertDialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
+        alertDialog.setTitle("Notice!")
+        alertDialog.setPositiveButton("Ok", null)
 
         homeViewModel.allHomeItemId.observe(
             viewLifecycleOwner,
@@ -91,15 +83,12 @@ class AddHomeItemFragment : Fragment() {
                 .subscribe(
                     { value -> categoryName.text = value },
                     {
-                        Toast.makeText(
-                            requireContext(),
-                            "No Category Found! Contact Husband!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(requireContext(), "No Category Found! Contact Husband!", Toast.LENGTH_SHORT).show()
                         findNavController().navigateUp()
                     }
                 )
             dropDownCategoryName.visibility = View.GONE
+            btnAddHomeItem.visibility = View.GONE
             btnEnableSpin.setOnClickListener {
                 categoryName.visibility = View.GONE
                 btnEnableSpin.visibility = View.GONE
@@ -107,26 +96,37 @@ class AddHomeItemFragment : Fragment() {
                 for (i in 0..dropDownCategoryName.adapter.count) {
                     if (categoryName.text == dropDownCategoryName.adapter.getItem(i)) {
                         dropDownCategoryName.setSelection(i)
+                        alertDialog.setMessage("Please be aware, changing category will delete shopping data of this item!")
+                        alertDialog.show()
                         break
                     }
+                }
+            }
+            btnUpdateHomeItem.setOnClickListener {
+                val key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
+                val homeItemName = editTextHomeItemName.text.toString().trim()
+                val homeItemQty = editTextHomeItemQty.text.toString().trim()
+                val isVerified = checkValues(homeItemName, homeItemQty, isForEdit)
+                if(isVerified) {
+                    if (key != categoryId) {
+                        homeViewModel.insertHomeItem(HomeItem(key, homeItemName, homeItemQty.toInt(), itemId))
+                    }
+                    else {
+                        homeViewModel.updateHomeItem(HomeItem(categoryId, homeItemName, homeItemQty.toInt(), itemId))
+                    }
+                    findNavController().navigateUp()
                 }
             }
         } else {
             categoryName.visibility = View.GONE
             btnEnableSpin.visibility = View.GONE
             btnDeleteHome.visibility = View.GONE
+            btnUpdateHomeItem.visibility = View.GONE
         }
 
         btnDeleteHome.setOnClickListener {
             if(isForEdit) {
-                homeViewModel.deleteHomeItem(
-                    HomeItem(
-                        categoryId,
-                        editName,
-                        editQty,
-                        itemId
-                    )
-                )
+                homeViewModel.deleteHomeItem(HomeItem(categoryId, editName, editQty, itemId))
                 findNavController().navigateUp()
             }
             else {
@@ -143,37 +143,33 @@ class AddHomeItemFragment : Fragment() {
                 val key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
                 val homeItemName = editTextHomeItemName.text.toString().trim()
                 val homeItemQty = editTextHomeItemQty.text.toString().trim()
-                when {
-
-                    homeItemName.isEmpty() -> {
-                        editTextHomeItemName.error = "Fill in Name"
-                        error = true
-                    }
-                    homeItemQty.isEmpty() -> {
-                        editTextHomeItemQty.error = "Fill in Quantity"
-                        error = true
-                    }
-                }
-                if (!isForEdit) {
-                    if (homeItemWithId.containsValue(homeItemName)) {
-                        editTextHomeItemName.error = "Home Item already exists"
-                        error = true
-                    }
-                }
-                if (!error) {
-
-                    homeViewModel.insertHomeItem(
-                        HomeItem(
-                            key,
-                            homeItemName,
-                            homeItemQty.toInt(),
-                            itemId
-                        )
-                    )
+                val isVerified = checkValues(homeItemName, homeItemQty, isForEdit)
+                if(isVerified) {
+                    homeViewModel.insertHomeItem(HomeItem(key, homeItemName, homeItemQty.toInt(), itemId))
                     findNavController().navigateUp()
                 }
             }
         }
         return root
+    }
+
+    private fun checkValues(homeItemName : String, homeItemQty : String, isForEdit : Boolean) : Boolean {
+        when {
+            homeItemWithId.containsValue(homeItemName) && !isForEdit -> {
+                editTextHomeItemName.error = "Home Item already exists"
+                return false
+            }
+            homeItemName.isEmpty() -> {
+                editTextHomeItemName.error = "Fill in Name"
+                return false
+            }
+            homeItemQty.isEmpty() -> {
+                editTextHomeItemQty.error = "Fill in Quantity"
+                return false
+            }
+            else -> {
+                return true
+            }
+        }
     }
 }

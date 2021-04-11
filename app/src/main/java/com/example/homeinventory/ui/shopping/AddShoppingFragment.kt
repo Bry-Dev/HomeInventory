@@ -32,7 +32,7 @@ class AddShoppingFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        val alertDialog = AlertDialog.Builder(requireContext())
+        val alertDialog = AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme)
         alertDialog.setTitle("Notice!")
         alertDialog.setPositiveButton("Ok", null)
         val root = inflater.inflate(R.layout.fargment_add_shopping, container, false)

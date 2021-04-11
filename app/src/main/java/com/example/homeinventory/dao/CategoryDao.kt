@@ -1,5 +1,8 @@
 package com.example.homeinventory.dao
 
+import android.database.sqlite.SQLiteConstraintException
+import android.database.sqlite.SQLiteException
+import android.util.Log
 import androidx.room.*
 import com.example.homeinventory.model.Category
 import io.reactivex.rxjava3.core.Single
@@ -8,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CategoryDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertCategoryData(category: Category)
 
     @Query("select * from category_list")

@@ -14,6 +14,9 @@
         <variable
             name="listener"
             type="com.example.homeinventory.ui.home.OnClickItem" />
+        <variable
+            name="onLongClick"
+            type="com.example.homeinventory.ui.home.OnLongClick" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -21,7 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:onClick="@{() -> homeClickListener.onClick(recyclerHomeItem)}">
+        android:onClick="@{() -> homeClickListener.onClick(recyclerHomeItem)}"
+        android:longClickable="true"
+        android:onLongClick="@{() -> onLongClick.onLongCategoryClick(homeItems.category)}" >
+
 
         <RelativeLayout
             android:layout_width="match_parent"
