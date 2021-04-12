@@ -19,6 +19,11 @@ constructor(private var categoryDao: CategoryDao) {
     }
 
     @WorkerThread
+    suspend fun updateCategory(category: Category) {
+        categoryDao.updateCategory(category)
+    }
+
+    @WorkerThread
     suspend fun deleteCategory(category: Category) {
         categoryDao.deleteCategory(category)
     }

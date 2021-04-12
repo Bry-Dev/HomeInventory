@@ -27,6 +27,11 @@
         <action
             android:id="@+id/action_navigation_add_category_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <argument
+            android:name="category"
+            app:argType="com.example.homeinventory.model.Category"
+            android:defaultValue="@null"
+            app:nullable="true"/>
     </fragment>
 
     <fragment

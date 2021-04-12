@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.homeinventory.R
 import com.example.homeinventory.databinding.CategoryListBinding
+import com.example.homeinventory.model.Category
 import com.example.homeinventory.model.CategoryWithItems
 
-class CategoryRecyclerViewAdapter(private val listener : OnClickItem) :
+class CategoryRecyclerViewAdapter(private val listener : OnClickItem, private val onLongClick: OnLongClick) :
     ListAdapter<CategoryWithItems, CategoryRecyclerViewAdapter.CategoryRecyclerViewHolder>(CategoryDiffCallback()) {
     private val viewPool = RecyclerView.RecycledViewPool()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryRecyclerViewHolder {
@@ -19,14 +19,15 @@ class CategoryRecyclerViewAdapter(private val listener : OnClickItem) :
 
     override fun onBindViewHolder(holder: CategoryRecyclerViewHolder, position: Int) {
         val currentItem = getItem(position)
-        holder.bind(currentItem, viewPool, listener)
+        holder.bind(currentItem, viewPool, listener, onLongClick)
     }
 
     class CategoryRecyclerViewHolder(private val binding: CategoryListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentItem: CategoryWithItems, viewPool : RecyclerView.RecycledViewPool, onClickItem: OnClickItem) {
+        fun bind(currentItem: CategoryWithItems, viewPool : RecyclerView.RecycledViewPool, onClickItem: OnClickItem, onLongClick: OnLongClick) {
             binding.homeItems = currentItem
             binding.recyclerHomeItem.setRecycledViewPool(viewPool)
             binding.listener = onClickItem
+            binding.onLongClick = onLongClick
             binding.homeClickListener = CategoryClickListener()
             binding.executePendingBindings()
         }
@@ -49,6 +50,10 @@ class CategoryDiffCallback : DiffUtil.ItemCallback<CategoryWithItems>() {
     override fun areContentsTheSame(oldItem: CategoryWithItems, newItem: CategoryWithItems): Boolean {
         return oldItem == newItem
     }
+}
+
+interface OnLongClick {
+    fun onLongCategoryClick(category: Category ) : Boolean
 }
 
 class CategoryClickListener {

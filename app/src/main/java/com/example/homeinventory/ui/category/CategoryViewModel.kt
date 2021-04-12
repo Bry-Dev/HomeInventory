@@ -24,6 +24,8 @@ constructor(private val categoryRepository: CategoryRepository) : ViewModel() {
     fun insertCategoryData(category: Category) =
         viewModelScope.launch { categoryRepository.insertCategoryData(category) }
 
+    fun updateCategory(category: Category) = viewModelScope.launch { categoryRepository.updateCategory(category) }
+
     fun selectCategory(id : Int) : Single<String> {
         return categoryRepository.selectCategory(id)
     }

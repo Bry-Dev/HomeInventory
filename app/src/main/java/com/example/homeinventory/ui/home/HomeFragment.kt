@@ -1,21 +1,19 @@
 package com.example.homeinventory.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homeinventory.R
+import com.example.homeinventory.model.Category
 import com.example.homeinventory.model.HomeItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), OnClickItem {
+class HomeFragment : Fragment(), OnClickItem, OnLongClick {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
@@ -27,7 +25,7 @@ class HomeFragment : Fragment(), OnClickItem {
         setHasOptionsMenu(true)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val categoryRecyclerView = root.findViewById<RecyclerView>(R.id.recycler_category)
-        val adapter = CategoryRecyclerViewAdapter(this)
+        val adapter = CategoryRecyclerViewAdapter(this, this)
         categoryRecyclerView.adapter = adapter
         homeViewModel.allHomeItem.observe(viewLifecycleOwner, {
             it?.let {
@@ -41,6 +39,13 @@ class HomeFragment : Fragment(), OnClickItem {
         val action = HomeFragmentDirections.actionNavigationHomeToNavigationAddHomeItem()
         action.homeItem = homeItem
         findNavController().navigate(action)
+    }
+
+    override fun onLongCategoryClick(category: Category) : Boolean {
+        val action = HomeFragmentDirections.actionNavigationHomeToNavigationAddCategory()
+        action.category = category
+        findNavController().navigate(action)
+        return true
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -64,6 +69,8 @@ class HomeFragment : Fragment(), OnClickItem {
     companion object {
         private const val TAG = "HomeFragment"
     }
+
+
 
 
 }

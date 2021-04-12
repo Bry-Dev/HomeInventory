@@ -34,6 +34,8 @@ constructor(private val homeRepository: HomeRepository) : ViewModel() {
     fun insertHomeItem(homeItem: HomeItem) =
         viewModelScope.launch { homeRepository.insertHomeItem(homeItem) }
 
+    fun updateHomeItem(homeItem: HomeItem) = viewModelScope.launch { homeRepository.updateHomeItem(homeItem) }
+
     fun deleteHomeItem(homeItem: HomeItem) =
         viewModelScope.launch { homeRepository.deleteHomeItem(homeItem) }
 }
