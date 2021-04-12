@@ -4,7 +4,7 @@ Please note this is still under Alpha stages
 
 There are two items being handled -- Current Household supplies and Supplies for Shopping
 
-To use the application here are the guidelines and info:
+To use the application here are the guidelines and info(Updated 04/12/2021):
   - Home Supplies
     - First Add a category on the first page menu(upper right)
       - This is to categorize the items (e.g. Vegetables, Fruits, Tools, Hardware, etc...)
@@ -12,6 +12,13 @@ To use the application here are the guidelines and info:
       - You will have to indicate the name and quantity
     - This will now be displayed on the Dashboard
       - Click the Category to display all items under it
+    - Home Item Editting is now possible
+      - Click the Home Item and it will display an edit button --> This will direct you to an editting page
+      - If you need to edit the Category:
+        - Click the Button near the Category, this will enable the drop down to select a new category
+    - Category is now Editable
+      - Long Click the Category and it will direct you to a page to rename the Category
+      - Category can't be deleted --> This is to prevent the frustration of accidental deletion of Data
   - Shopping Supplies
     - On the upper right corner, you can add new items for buying
     - Indicate which the item, quantity, and when
