@@ -28,4 +28,11 @@ To use the application here are the guidelines and info(Updated 04/12/2021):
     - To delete an item, slide the item on the dashboard(left or right)
       - Note: Deleting an item will automatically update the number of items(based on the quantity bought) in the Home Supplies
 
-Dedicated for the Wife;
+This is dedicated for the Wife;
+
+For those that will use this as a reference for their projects, features that were used here and their location are:
+  - Data Binding -- RecyclerView Adapters
+  - RxJava/RxKotlin + Room -- AddHomeItemFragment
+  - Room Relation one-to-many -- CategoryWithItems or ShoppingForHome
+  - Hilt dependency Injection -- DatabaseModule
+  - Mobile Navigation with argument/parameters -- mobile_navigation for the XML changes and HomeFragment + AddCategoryFragment or HomeFragment + AddHomeItemFragment for the kotlin side
