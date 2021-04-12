@@ -1,8 +1,5 @@
 package com.example.homeinventory.dao
 
-import android.database.sqlite.SQLiteConstraintException
-import android.database.sqlite.SQLiteException
-import android.util.Log
 import androidx.room.*
 import com.example.homeinventory.model.Category
 import io.reactivex.rxjava3.core.Single
