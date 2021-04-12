@@ -32,7 +32,7 @@ This is dedicated for the Wife;
 
 For those that will use this as a reference for their projects, features that were used here and their location are:
   - Data Binding -- RecyclerView Adapters
-  - RxJava/RxKotlin + Room -- AddHomeItemFragment
+  - RxJava/RxKotlin + Room -- AddHomeItemFragment + HomeBindingUtils or + ShoppingBindingUtils
   - Room Relation one-to-many -- CategoryWithItems or ShoppingForHome
   - Hilt dependency Injection -- DatabaseModule
   - Mobile Navigation with argument/parameters -- mobile_navigation for the XML changes and HomeFragment + AddCategoryFragment or HomeFragment + AddHomeItemFragment for the kotlin side
