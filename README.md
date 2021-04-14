@@ -37,4 +37,5 @@ For those that will use this as a reference for their projects, features that we
   - RxJava/RxKotlin + Room -- AddHomeItemFragment
   - Room Relation one-to-many -- CategoryWithItems or ShoppingForHome
   - Hilt dependency Injection -- DatabaseModule
+  - Nested RecyclerView -- CategoryViewAdapter + HomeBindingUtils & HomeRecyclerAdapter
   - Mobile Navigation with argument/parameters -- mobile_navigation for the XML changes and HomeFragment + AddCategoryFragment or HomeFragment + AddHomeItemFragment for the kotlin side
