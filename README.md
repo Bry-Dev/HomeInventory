@@ -33,6 +33,7 @@ To use the application here are the guidelines and info(Updated 04/12/2021):
 This is dedicated for the Wife;
 
 For those that will use this as a reference for their projects, features that were used here and their location are:
+  -
   - Data Binding -- RecyclerView Adapters + HomeBindingUtils or + ShoppingBindingUtils
   - RxJava/RxKotlin + Room -- AddHomeItemFragment
   - Room Relation one-to-many -- CategoryWithItems or ShoppingForHome
