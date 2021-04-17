@@ -19,7 +19,7 @@ constructor(private val homeRepository: HomeRepository) : ViewModel() {
 
     val allHomeItem: LiveData<List<CategoryWithItems>> = homeRepository.allHomeItem.asLiveData()
 
-    val allHomeItemList : LiveData<List<HomeItem>> = homeRepository.allHomeItemList.asLiveData()
+    private val allHomeItemList : LiveData<List<HomeItem>> = homeRepository.allHomeItemList.asLiveData()
 
     val allHomeItemName : LiveData<List<String>> = allHomeItemList.map { it.map{ homeItem -> homeItem.itemName } }
 

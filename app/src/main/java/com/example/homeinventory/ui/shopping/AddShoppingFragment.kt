@@ -15,7 +15,6 @@ import com.example.homeinventory.ui.home.HomeViewModel
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
-import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
@@ -37,7 +36,7 @@ class AddShoppingFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         alertDialog.setPositiveButton("Ok", null)
         val root = inflater.inflate(R.layout.fargment_add_shopping, container, false)
         val btnAddToCart = root.findViewById<Button>(R.id.btnAddToCart)
-        val dropDownItemName = root.findViewById<Spinner>(R.id.dropDownItemName)
+        val autoCompleteNames = root.findViewById<AutoCompleteTextView>(R.id.autoCompleteNames)
         val editTextItemQty = root.findViewById<TextInputEditText>(R.id.editTextItemQty)
         editTextBuyDate = root.findViewById(R.id.editTextBuyDate)
 
@@ -46,24 +45,45 @@ class AddShoppingFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             { homeItemId ->
                 homeItemWithId = homeItemId
                 val homeItemNames = ArrayList(homeItemId.values)
-                dropDownItemName.adapter =
+                autoCompleteNames.setAdapter(
                     ArrayAdapter(
                         requireContext(),
-                        R.layout.support_simple_spinner_dropdown_item,
+                        android.R.layout.simple_list_item_1,
                         homeItemNames
-                    )})
+                    )
+                )
+            })
+
+        autoCompleteNames.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                autoCompleteNames.showDropDown()
+            }
+        }
 
         editTextBuyDate.setOnClickListener {
             showDatePickerDialog()
         }
         btnAddToCart.setOnClickListener {
-            if (dropDownItemName.adapter.isEmpty) {
+            if (autoCompleteNames.adapter.isEmpty) {
                 alertDialog.setMessage("Home Item List is Blank. Please add under Home Item First.")
                 alertDialog.show()
+            } else if(editTextBuyDate.text.toString().trim().isEmpty()) {
+                editTextBuyDate.error = "Please enter date."
             } else {
-                val key = homeItemWithId.filterValues { it == dropDownItemName.selectedItem }.keys
-                shoppingViewModel.insertShoppingItem(ShoppingItem(key.first(), editTextItemQty.text.toString().toInt(), LocalDate.parse(editTextBuyDate.text.toString().trim())))
-                findNavController().navigateUp()
+                val key = homeItemWithId.filterValues { it == autoCompleteNames.text.toString() }.keys
+                if (key.isNullOrEmpty()) {
+                    autoCompleteNames.error = "Please select a correct item!"
+                }
+                else {
+                    shoppingViewModel.insertShoppingItem(
+                        ShoppingItem(
+                            key.first(), editTextItemQty.text.toString().toInt(), LocalDate.parse(
+                                editTextBuyDate.text.toString().trim()
+                            )
+                        )
+                    )
+                    findNavController().navigateUp()
+                }
             }
         }
         return root
