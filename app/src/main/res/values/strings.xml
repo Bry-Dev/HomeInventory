@@ -18,4 +18,5 @@
     <string name="edit_button">Edit Home Item</string>
     <string name="enable_spin">Enable Spinner</string>
     <string name="update_button">Update Item</string>
+    <string name="auto_complete">Item name</string>
 </resources>

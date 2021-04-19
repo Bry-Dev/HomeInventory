@@ -11,7 +11,7 @@ interface HomeItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHomeItem(homeItem: HomeItem)
 
-    @Query("select * from home_items")
+    @Query("select * from home_items order by item_name")
     fun selectAllHomeItems() : Flow<List<HomeItem>>
 
     @Query("select item_name from home_items")
