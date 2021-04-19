@@ -12,15 +12,17 @@ To use the application here are the guidelines and info(Updated 04/12/2021):
       - You will have to indicate the name and quantity
     - This will now be displayed on the Dashboard
       - Click the Category to display all items under it
-    - Home Item Editting is now possible
+    - Home Item Editting is now possible (Updated 04/12/2021)
       - Click the Home Item and it will display an edit button --> This will direct you to an editting page
       - If you need to edit the Category:
         - Click the Button near the Category, this will enable the drop down to select a new category
-    - Category is now Editable
+    - Category is now Editable (Updated 04/12/2021)
       - Long Click the Category and it will direct you to a page to rename the Category
       - Category can't be deleted --> This is to prevent the frustration of accidental deletion of Data
-  - Shopping Supplies
+  - Shopping Supplies(Update 04/19/2021)
     - On the upper right corner, you can add new items for buying
+    - Changed the Drop Down to an Auto Complete Textview for easier searching and selection of items.(Update 04/19/2021)
+      - This will hopefully reduce the selecting process for large number of home items
     - Indicate which the item, quantity, and when
       - Note: Items listed here are based on the Home Supplies. Please add home supplies first before adding it to your shopping list.
       - Note Cont: There are no notification yet when the date is near.
