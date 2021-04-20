@@ -2,6 +2,7 @@ package com.example.homeinventory.ui.home
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -42,7 +43,16 @@ class HomeFragment : Fragment(), OnClickItem, OnLongClick {
     }
 
     override fun onEditClick(homeItem: HomeItem) {
-        EditDialog(homeItem).show(childFragmentManager, TAG)
+        if (homeItem.itemQuantity > 0) {
+            EditDialog(homeItem).show(childFragmentManager, TAG)
+        }
+        else {
+            Toast.makeText(
+                requireContext(),
+                "Please replenish your supply!",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onLongEditClick(homeItem: HomeItem): Boolean {
