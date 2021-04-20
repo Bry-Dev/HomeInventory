@@ -19,7 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:onClick="@{() -> clickListener.onClick(btnEdit)}">
+        android:onClick="@{() -> clickListener.onClick(btnEdit)}"
+        android:longClickable="true"
+        android:onLongClick="@{() -> listener.onLongEditClick(itemList)}" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,11 +57,12 @@
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="3dp"
+                android:padding="16dp"
                 android:visibility="gone"
                 android:onClick="@{() -> listener.onEditClick(itemList)}"
-                android:src="@android:drawable/ic_menu_edit"
+                android:background="@drawable/ic_edit_item"
                 android:contentDescription="@string/edit_button" />
         </LinearLayout>
 

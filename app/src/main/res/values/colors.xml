@@ -22,4 +22,6 @@
     <color name="attention">#FA3636</color>
     <color name="normal">#808080</color>
 
+    <color name="transparent">#00FFFFFF</color>
+
 </resources>
