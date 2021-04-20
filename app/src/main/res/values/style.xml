@@ -30,7 +30,7 @@
         <item name="colorControlNormal">@color/transparent</item>
     </style>
 
-    <style name="EditDialog" parent="Theme.AppCompat.DayNight.Dialog">
+    <style name="EditDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">false</item>
         <item name="buttonStyle">@style/BlueButton</item>
     </style>
