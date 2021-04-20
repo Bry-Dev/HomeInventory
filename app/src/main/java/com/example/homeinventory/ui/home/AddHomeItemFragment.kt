@@ -137,7 +137,7 @@ class AddHomeItemFragment : Fragment() {
 
         btnAddHomeItem.setOnClickListener {
             if (dropDownCategoryName.adapter.isEmpty) {
-                alertDialog.setMessage("Home Item List is Blank. Please add under Home Item First.")
+                alertDialog.setMessage("Category is blank. Please add category first")
                 alertDialog.show()
             } else {
                 val key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
