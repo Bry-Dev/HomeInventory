@@ -82,7 +82,9 @@ class AddShoppingFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                             )
                         )
                     )
-                    findNavController().navigateUp()
+                    autoCompleteNames.setText("")
+                    editTextItemQty.setText("")
+                    autoCompleteNames.requestFocus()
                 }
             }
         }

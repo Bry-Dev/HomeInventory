@@ -56,6 +56,7 @@ class HomeItemDiffCallback : DiffUtil.ItemCallback<HomeItem>() {
 
 interface OnClickItem {
     fun onEditClick(homeItem: HomeItem)
+    fun onLongEditClick(homeItem: HomeItem) : Boolean
 }
 
 class HomeItemClickListener {

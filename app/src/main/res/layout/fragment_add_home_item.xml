@@ -34,10 +34,11 @@
     <ImageButton
         android:id="@+id/btnEnableSpin"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
         android:layout_marginStart="8dp"
         android:contentDescription="@string/enable_spin"
-        android:src="@android:drawable/ic_menu_edit"
+        android:background="@drawable/ic_edit_item"
         app:layout_constraintBottom_toBottomOf="@id/categoryName"
         app:layout_constraintStart_toEndOf="@id/categoryName"
         app:layout_constraintTop_toTopOf="@id/categoryName" />

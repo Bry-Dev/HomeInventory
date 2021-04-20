@@ -2,8 +2,9 @@
     <string name="app_name">Home Supplies</string>
     <string name="title_home">Home</string>
     <string name="title_shopping">Shopping</string>
-    <string name="textivew_hint">THIS IS A HINT BOI</string>
-    <string name="shopee">Salamat Shoppee</string>
+    <string name="item_name">Item Name</string>
+    <string name="auto_complete">Item name</string>
+    <string name="ask_question">How many were used?</string>
     <string name="add_category">Add Category</string>
     <string name="add_shopping">Add-To-Cart</string>
     <string name="add_item">Item to Buy</string>
@@ -13,10 +14,10 @@
     <string name="add_home_item">Add Home Item</string>
     <string name="add_home_button">Add Item</string>
     <string name="lazy_button">OK</string>
-    <string name="item_name">Item Name</string>
+    <string name="cancel_button">Cancel</string>
     <string name="delete_button">Delete Item</string>
     <string name="edit_button">Edit Home Item</string>
     <string name="enable_spin">Enable Spinner</string>
     <string name="update_button">Update Item</string>
-    <string name="auto_complete">Item name</string>
+    <string name="dialog_title">Less Item Used</string>
 </resources>
