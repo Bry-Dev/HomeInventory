@@ -103,7 +103,10 @@ class AddHomeItemFragment : Fragment() {
                 }
             }
             btnUpdateHomeItem.setOnClickListener {
-                val key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
+                var key = categoryId
+                if (dropDownCategoryName.visibility == View.VISIBLE) {
+                    key = category.first { it.name == dropDownCategoryName.selectedItem }.categoryId
+                }
                 val homeItemName = editTextHomeItemName.text.toString().trim()
                 val homeItemQty = editTextHomeItemQty.text.toString().trim()
                 val isVerified = checkValues(homeItemName, homeItemQty, isForEdit)
