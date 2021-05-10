@@ -8,7 +8,6 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.homeinventory.R
 import com.example.homeinventory.model.ShoppingItem
 import com.example.homeinventory.ui.home.HomeViewModel
