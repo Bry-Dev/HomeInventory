@@ -37,17 +37,19 @@ class ShoppingFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-        val swipeToDeleteCallback = SwipeHelper { position ->
+        val swipeToDeleteCallback = SwipeHelper { position, direction ->
             val shoppingForHome = adapter.getShoppingAt(position)
             shoppingForHome?.let {
                 val newTotal = it.shoppingItem.itemBuyQuantity + it.homeItem.itemQuantity
-                homeViewModel.updateQuantity(newTotal, it.homeItem.itemId)
+                if (direction == ItemTouchHelper.RIGHT) {
+                    homeViewModel.updateQuantity(newTotal, it.homeItem.itemId)
+                    Toast.makeText(
+                        requireContext(),
+                        "${it.homeItem.itemName} bought!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 shoppingViewModel.deleteShoppingItem(it.shoppingItem)
-                Toast.makeText(
-                    requireContext(),
-                    "${it.homeItem.itemName} bought!",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
         ItemTouchHelper(swipeToDeleteCallback).attachToRecyclerView(recyclerShopping)
