@@ -29,10 +29,11 @@ To use the application here are the guidelines and info(Updated 04/12/2021):
       - Note: Items listed here are based on the Home Supplies. Please add home supplies first before adding it to your shopping list.
       - Note Cont: There are no notification yet when the date is near.
     - Items added here will now be displayed on the Shopping Dashboard
-    - To delete an item, slide the item on the dashboard(left or right)
-      - Note: Deleting an item will automatically update the number of items(based on the quantity bought) in the Home Supplies
+    - To delete an item( **no update** ), slide the item on the dashboard **left** (Update 05/06/2021)
+    - To delete **and** update the item swipe it **right** (Update 05/06/2021)
+      - Note: This will automatically update the number of items(based on the quantity bought) in the Home Supplies
 
-  If you wish to test the app, please check the _**Release**_
+  If you wish to test the app, please check the [_**Release page**_](https://github.com/Bry-Dev/HomeInventory/releases)
 
 This is dedicated for the Wife;
 
